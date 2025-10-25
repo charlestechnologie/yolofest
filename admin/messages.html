@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Messages</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div class="fixed inset-y-0 left-0 w-64 bg-white shadow-md">
+            <div class="p-4 border-b border-gray-200">
+                <h1 class="text-xl font-bold text-primary">YOLO Admin</h1>
+            </div>
+            <nav class="p-4 space-y-2">
+                <a href="dashboard.html" class="flex items-center space-x-2 text-gray-700 hover:text-primary p-2 rounded hover:bg-gray-100">
+                    <i data-feather="home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="artists.html" class="flex items-center space-x-2 text-gray-700 hover:text-primary p-2 rounded hover:bg-gray-100">
+                    <i data-feather="users"></i>
+                    <span>Artistes</span>
+                </a>
+                <a href="tickets.html" class="flex items-center space-x-2 text-gray-700 hover:text-primary p-2 rounded hover:bg-gray-100">
+                    <i data-feather="ticket"></i>
+                    <span>Billets</span>
+                </a>
+                <a href="messages.html" class="flex items-center space-x-2 text-primary font-medium p-2 rounded bg-gray-100">
+                    <i data-feather="mail"></i>
+                    <span>Messages</span>
+                </a>
+                <a href="settings.html" class="flex items-center space-x-2 text-gray-700 hover:text-primary p-2 rounded hover:bg-gray-100">
+                    <i data-feather="settings"></i>
+                    <span>Paramètres</span>
+                </a>
+                <a href="#" id="logout" class="flex items-center space-x-2 text-gray-700 hover:text-red-500 p-2 rounded hover:bg-gray-100">
+                    <i data-feather="log-out"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="ml-64 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Messages des visiteurs</h2>
+                <div class="relative">
+                    <input type="text" placeholder="Rechercher..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    <i data-feather="search" class="absolute left-3 top-2.5 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Messages List -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="divide-y divide-gray-200">
+                    <!-- Message 1 -->
+                    <div class="p-4 hover:bg-gray-50 cursor-pointer">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-gray-900">Demande de partenariat</h3>
+                                <p class="text-sm text-gray-500">De: contact@company.com</p>
+                            </div>
+                            <span class="text-xs text-gray-400">15 juin 2024</span>
+                        </div>
+                        <p class="mt-2 text-gray-600 text-sm line-clamp-2">Bonjour, nous souhaiterions devenir partenaire de votre festival. Pouvez-vous nous envoyer plus d'informations...</p>
+                    </div>
+                    
+                    <!-- Message 2 -->
+                    <div class="p-4 hover:bg-gray-50 cursor-pointer">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-gray-900">Question sur les billets</h3>
+                                <p class="text-sm text-gray-500">De: client@gmail.com</p>
+                            </div>
+                            <span class="text-xs text-gray-400">14 juin 2024</span>
+                        </div>
+                        <p class="mt-2 text-gray-600 text-sm line-clamp-2">Bonjour, j'ai acheté un billet mais je n'ai pas reçu de confirmation par email. Pouvez-vous vérifier...</p>
+                    </div>
+                    
+                    <!-- More messages... -->
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-6 flex justify-between items-center">
+                <div class="text-sm text-gray-500">Showing 1 to 5 of 42 messages</div>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Précédent</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Suivant</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Vérification de la connexion
+        if(!localStorage.getItem('adminLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        // Déconnexion
+        document.getElementById('logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminLoggedIn');
+            window.location.href = 'login.html';
+        });
+
+        feather.replace();
+    </script>
+</body>
+</html>

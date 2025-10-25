@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Billets</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div class="fixed inset-y-0 left-0 w-64 bg-white shadow-md">
+            <div class="p-4 border-b border-gray-200">
+                <h1 class="text-xl font-bold text-primary">YOLO Admin</h1>
+            </div>
+            <nav class="p-4 space-y-2">
+                <a href="dashboard.html" class="flex items-center space-x-2 text-gray-700 hover:text-primary p-2 rounded hover:bg-gray-100">
+                    <i data-feather="home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="artists.html" class="flex items-center space-x-2 text-gray-700 hover:text-primary p-2 rounded hover:bg-gray-100">
+                    <i data-feather="users"></i>
+                    <span>Artistes</span>
+                </a>
+                <a href="tickets.html" class="flex items-center space-x-2 text-primary font-medium p-2 rounded bg-gray-100">
+                    <i data-feather="ticket"></i>
+                    <span>Billets</span>
+                </a>
+                <a href="messages.html" class="flex items-center space-x-2 text-gray-700 hover:text-primary p-2 rounded hover:bg-gray-100">
+                    <i data-feather="mail"></i>
+                    <span>Messages</span>
+                </a>
+                <a href="settings.html" class="flex items-center space-x-2 text-gray-700 hover:text-primary p-2 rounded hover:bg-gray-100">
+                    <i data-feather="settings"></i>
+                    <span>Paramètres</span>
+                </a>
+                <a href="#" id="logout" class="flex items-center space-x-2 text-gray-700 hover:text-red-500 p-2 rounded hover:bg-gray-100">
+                    <i data-feather="log-out"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="ml-64 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Gestion des Billets</h2>
+                <div class="flex space-x-4">
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition flex items-center">
+                        <i data-feather="download" class="mr-2"></i>
+                        Exporter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tickets Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-gray-500 text-sm">Total vendus</p>
+                    <h3 class="text-2xl font-bold">1,247</h3>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-gray-500 text-sm">VIP vendus</p>
+                    <h3 class="text-2xl font-bold">342</h3>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-gray-500 text-sm">Early Bird vendus</p>
+                    <h3 class="text-2xl font-bold">127</h3>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-gray-500 text-sm">Revenue total</p>
+                    <h3 class="text-2xl font-bold">$187,324</h3>
+                </div>
+            </div>
+
+            <!-- Tickets Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prix</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#YLF-1247</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">VIP</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Jean Dupont</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12/06/2024</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$299.00</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Validé</span>
+                            </td>
+                        </tr>
+                        <!-- More tickets... -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-6 flex justify-between items-center">
+                <div class="text-sm text-gray-500">Showing 1 to 10 of 1,247 tickets</div>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Précédent</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Suivant</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Vérification de la connexion
+        if(!localStorage.getItem('adminLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        // Déconnexion
+        document.getElementById('logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminLoggedIn');
+            window.location.href = 'login.html';
+        });
+
+        feather.replace();
+    </script>
+</body>
+</html>
