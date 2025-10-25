@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer un Artiste | YOLO Festival</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 flex justify-between items-center">
+                <h1 class="text-xl font-bold text-gray-900">Supprimer un Artiste</h1>
+                <a href="../dashboard.html" class="text-primary hover:text-secondary">Retour au tableau de bord</a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6">
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+                        <i data-feather="alert-triangle" class="h-6 w-6 text-red-600"></i>
+                    </div>
+                    <h3 class="mt-2 text-lg font-medium text-gray-900">Confirmer la suppression</h3>
+                    <div class="mt-2">
+                        <img src="http://static.photos/music/320x240/1" alt="DJ Killa" class="h-32 w-32 object-cover rounded-md mx-auto mb-4">
+                        <p class="text-sm text-gray-500">Êtes-vous sûr de vouloir supprimer définitivement l'artiste <strong>DJ Killa</strong>? Cette action ne peut pas être annulée.</p>
+                    </div>
+                    <div class="mt-5 flex justify-center space-x-4">
+                        <a href="modifier.html" class="bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300">Annuler</a>
+                        <a href="liste.html" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700">Supprimer définitivement</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

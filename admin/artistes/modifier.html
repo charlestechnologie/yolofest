@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un Artiste | YOLO Festival</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 flex justify-between items-center">
+                <h1 class="text-xl font-bold text-gray-900">Modifier un Artiste</h1>
+                <a href="../dashboard.html" class="text-primary hover:text-secondary">Retour au tableau de bord</a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6">
+            <div class="bg-white shadow rounded-lg p-6">
+                <form id="artist-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nom de l'artiste</label>
+                            <input type="text" id="name" name="name" value="DJ Killa" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label for="country" class="block text-sm font-medium text-gray-700">Pays d'origine</label>
+                            <input type="text" id="country" name="country" value="Jamaica" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="bio" class="block text-sm font-medium text-gray-700">Biographie</label>
+                        <textarea id="bio" name="bio" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">Reggae & Dancehall maestro with 10 years of festival experience worldwide.</textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Photo actuelle</label>
+                        <img src="http://static.photos/music/320x240/1" alt="DJ Killa" class="h-32 w-32 object-cover rounded-md mt-2">
+                        <label for="photo" class="block text-sm font-medium text-gray-700 mt-4">Changer la photo</label>
+                        <input type="file" id="photo" name="photo" accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-dark">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label for="genre" class="block text-sm font-medium text-gray-700">Genre musical</label>
+                            <select id="genre" name="genre" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                                <option>Reggae</option>
+                                <option selected>Dancehall</option>
+                                <option>Soca</option>
+                                <option>Calypso</option>
+                                <option>Zouk</option>
+                                <option>Kompa</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="day" class="block text-sm font-medium text-gray-700">Jour de performance</label>
+                            <select id="day" name="day" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                                <option>Vendredi 15 août</option>
+                                <option selected>Samedi 16 août</option>
+                                <option>Dimanche 17 août</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="stage" class="block text-sm font-medium text-gray-700">Scène</label>
+                            <select id="stage" name="stage" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                                <option selected>Scène Principale</option>
+                                <option>Scène Reggae</option>
+                                <option>Scène Dancehall</option>
+                                <option>Scène Soca</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-3">
+                        <a href="supprimer.html" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700">Supprimer</a>
+                        <button type="reset" class="bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300">Annuler</button>
+                        <button type="submit" class="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script>
+        feather.replace();
+        document.getElementById('artist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Modifications enregistrées avec succès!');
+            window.location.href = "liste.html";
+        });
+    </script>
+</body>
+</html>

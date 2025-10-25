@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exporter les Billets | YOLO Festival</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 flex justify-between items-center">
+                <h1 class="text-xl font-bold text-gray-900">Exporter les Billets</h1>
+                <a href="../dashboard.html" class="text-primary hover:text-secondary">Retour au tableau de bord</a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6">
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="mb-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-2">Options d'exportation</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="type" class="block text-sm font-medium text-gray-700">Type de billet</label>
+                            <select id="type" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                                <option>Tous les types</option>
+                                <option>Early Bird</option>
+                                <option>General Admission</option>
+                                <option>VIP Experience</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="status" class="block text-sm font-medium text-gray-700">Statut</label>
+                            <select id="status" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                                <option>Tous les statuts</option>
+                                <option>Validé</option>
+                                <option>En attente</option>
+                                <option>Annulé</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-2">Format d'exportation</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <button id="export-pdf" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 flex items-center justify-center">
+                            <i data-feather="file-text" class="mr-2"></i> PDF
+                        </button>
+                        <button id="export-csv" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 flex items-center justify-center">
+                            <i data-feather="file-text" class="mr-2"></i> CSV
+                        </button>
+                        <button id="export-excel" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 flex items-center justify-center">
+                            <i data-feather="file-text" class="mr-2"></i> Excel
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-lg font-medium text-gray-900 mb-2">Aperçu des données</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prix</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#1001</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Jean Dupont</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">VIP</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$299</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Validé</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15/07/2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#1002</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Marie Lambert</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">General</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$149</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En attente</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">16/07/2024</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#1003</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Luc Tremblay</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Early Bird</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$99</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Validé</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10/07/2024</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        feather.replace();
+        
+        document.getElementById('export-pdf').addEventListener('click', function() {
+            // Utilisation de jsPDF pour générer un PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.text('Liste des billets - YOLO Festival', 14, 16);
+            doc.autoTable({
+                head: [['ID', 'Nom', 'Type', 'Prix', 'Statut', 'Date']],
+                body: [
+                    ['#1001', 'Jean Dupont', 'VIP', '$299', 'Validé', '15/07/2024'],
+                    ['#1002', 'Marie Lambert', 'General', '$149', 'En attente', '16/07/2024'],
+                    ['#1003', 'Luc Tremblay', 'Early Bird', '$99', 'Validé', '10/07/2024']
+                ],
+                startY: 30
+            });
+            
+            doc.save('billets-yolo-festival.pdf');
+        });
+
+        document.getElementById('export-csv').addEventListener('click', function() {
+            const csvContent = "data:text/csv;charset=utf-8,"
+                + "ID,Nom,Type,Prix,Statut,Date\n"
+                + "#1001,Jean Dupont,VIP,$299,Validé,15/07/2024\n"
+                + "#1002,Marie Lambert,General,$149,En attente,16/07/2024\n"
+                + "#1003,Luc Tremblay,Early Bird,$99,Validé,10/07/2024";
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "billets-yolo-festival.csv");
+            document.body.appendChild(link);
+            link.click();
+        });
+
+        document.getElementById('export-excel').addEventListener('click', function() {
+            // Simuler l'export Excel (pour une vraie implémentation, utiliser une lib comme SheetJS)
+            alert("Export Excel simulé. Dans une vraie implémentation, cela générerait un fichier Excel.");
+        });
+    </script>
+</body>
+</html>
