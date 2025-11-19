@@ -4,16 +4,50 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Galerie d'images avec agrandissement</title>
+<script src="js/style.js"></script>
+<script>
+  tailwind.config = {
+      theme: {
+          extend: {
+              colors: {
+                  primary: '#FF6B35',
+                  secondary: '#004E89',
+                  accent: '#FFBE0B'
+              }
+          }
+      }
+  }
+</script>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap');
+
   /* Reset et styles de base */
   * {
     box-sizing: border-box;
   }
+  .luckiest-guy-regular {
+      font-family: "Luckiest Guy", cursive;
+      font-weight: 800;
+      font-style: normal;
+  }
+  .text-primary {
+      --tw-text-opacity: 1;
+      color: rgb(255 107 53 / var(--tw-text-opacity, 1));
+  }
+  .bg-primary {
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 107 53 / var(--tw-bg-opacity, 1));
+  }
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #121212;
-    color: #fff;
+    color:#515151;
     margin: 0;
+  }
+  .memories{
+    position: relative;
+    padding-top: 90px;
   }
   h1 {
     text-align: center;
@@ -22,158 +56,163 @@
   }
 
     /* Header */
-    header {
-    background: linear-gradient(90deg, #4b6cb7, #182848);
-    color: white;
-    padding: 20px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    position: relative;
-  }
+    
+    
+    header.wgl-theme-header {
+            position: absolute;
+            z-index: 10; 
+            margin-left: 100px;
 
-  /* Logo */
-  .logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    cursor: pointer;
-    user-select: none;
-  }
-  .logo span {
-    color: #ffdd57;
-  }
+        }
 
-  /* Navigation */
-  nav {
-    flex-grow: 1;
-    margin-left: 40px;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    justify-content: flex-start;
-  }
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 8px 0;
-    position: relative;
-    transition: color 0.3s ease;
-  }
-  nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #ffdd57;
-    transition: width 0.3s ease;
-  }
-  nav ul li a:hover {
-    color: #ffdd57;
-  }
-  nav ul li a:hover::after {
-    width: 100%;
-  }
+        .wgl-site-header {
+            background-color: rgba(255,255,255,0);
+            color: #000000;
+        }
 
-  /* Bouton */
-  .btn {
-    background-color: #ffdd57;
-    color: #182848;
-    font-weight: 700;
-    padding: 12px 25px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    white-space: nowrap;
-  }
-  .btn:hover {
-    background-color: #f0c419;
-    color: #0f1a2b;
-  }
+        .wgl-logotype-container img {
+            height: 65px;
+        }
 
-  /* Bouton hamburger (mobile) */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    width: 28px;
-    height: 22px;
-    justify-content: space-between;
-  }
-  .hamburger span {
-    display: block;
-    height: 3px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
+        nav.primary-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    nav {
-      position: absolute;
-      top: 70px;
-      left: 0;
-      right: 0;
-      background: #182848;
-      margin: 0;
-      padding: 20px 0;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      z-index: 999;
-      border-radius: 0 0 10px 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    nav.active {
-      display: flex;
-    }
-    nav ul {
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
-      max-width: 300px;
-    }
-    nav ul li a {
-      font-size: 1.2rem;
-      padding: 10px 0;
-      text-align: center;
-      display: block;
-    }
-    .btn {
-      margin-top: 15px;
-      width: 100%;
-      max-width: 300px;
-      text-align: center;
-      padding: 12px 0;
-      border-radius: 30px;
-    }
-    .hamburger {
-      display: flex;
-      margin-left: auto;
-    }
-  }
+        nav.primary-nav li {
+            margin: 0 15px;
+        }
 
-  /* Animation hamburger active */
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
+        nav.primary-nav a {
+            text-decoration: none;
+            color: inherit;
+            font-family: Luckiest Guy, cursive;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .mobile-hamburger-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger-box {
+            width: 30px;
+            height: 24px;
+            position: relative;
+        }
+
+        .hamburger-inner {
+            width: 100%;
+            height: 3px;
+            background-color: #FF6E1F;
+            position: absolute;
+            transition: all 0.3s;
+        }
+
+        .hamburger-inner::before,
+        .hamburger-inner::after {
+            content: '';
+            width: 100%;
+            height: 3px;
+            background-color: #FF6E1F;
+            position: absolute;
+            transition: all 0.3s;
+        }
+
+        .hamburger-inner::before {
+            top: -8px;
+        }
+
+        .hamburger-inner::after {
+            top: 8px;
+        }
+
+        .hamburger-box.open .hamburger-inner {
+            background-color: transparent;
+        }
+
+        .hamburger-box.open .hamburger-inner::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .hamburger-box.open .hamburger-inner::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* Mobile Menu */
+        .mobile_nav_wrapper {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .mobile_nav_wrapper.open {
+            display: block;
+        }
+
+        .wgl-menu_outer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #fff;
+            transform: translateX(100%);
+            transition: transform 0.3s;
+        }
+
+        .mobile_nav_wrapper.open .wgl-menu_outer {
+            transform: translateX(0);
+        }
+
+        .wgl-menu-outer_content nav.primary-nav ul {
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .wgl-menu-outer_content nav.primary-nav li {
+            margin: 10px 0;
+        }
+
+        .mobile-hamburger-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .d-flex{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mobile {
+                display: none;
+            }
+        @media (min-width: 767px) {
+            .mobile{
+                display: block;
+            }
+            .desk {
+                display: none;
+            }
+        }
+        @media (max-width: 767px) {
+            
+            .mobile-hamburger-toggle {
+                display: block;
+            }
+        }
 
   /* Grille de la galerie */
   .gallery {
@@ -254,45 +293,81 @@
   }
 </style>
 </head>
-<body>
+<body class="font-['Montserrat'] bg-gray-50">
 
   
-<header>
-  <div class="logo">Yolo<span>Fest</span></div>
-
-  <nav id="navMenu">
-    <ul>
-      <li><a href="decompte.php">Accueil</a></li>
-      <li><a href="about.html">À propos</a></li>
-      <!-- <li><a href="#">Services</a></li> -->
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <!-- <button class="btn">Se connecter</button> -->
-  </nav>
-
-  <div class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+  <header class="fixed w-full z-50   bg-gray-900 bg-opacity-90 shadow-sm">
+    <div class="wgl-site-header container">
+        <div class="container-wrapper">
+            <div class="wgl-container">
+                <div class="wgl-header-row_wrapper d-flex">
+                    <div class="wgl-logotype-container">
+                        <a href="index.html">
+                            <img src="yolo_fest.png" alt="Yolo fest" height="65px">
+                        </a>
+                    </div>
+                    <nav class="primary-nav mobile">
+                        <ul>
+                            <li class="text-white hover:text-primary transition"><a href="about.html">About Us</a></li>
+                            <li class="text-white hover:text-primary transition"><a href="gallerie.html">Gallery</a></li>
+                            <li class="text-white hover:text-primary transition"><a href="sponsorship.html">Sponsorship</a></li>
+                            <li class="text-white hover:text-primary transition"><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="mobile-hamburger-toggle" style="margin-top: 30px;">
+                        <div class="hamburger-box">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile_nav_wrapper">
+        <div class="wgl-menu_overlay"></div>
+        <div class="wgl-menu_outer">
+            <div class="mobile-hamburger-close">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </div>
+            <div class="wgl-menu-outer_content">
+                <nav class="primary-nav desk">
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallerie.html">Gallery</a></li>
+                        <li><a href="sponsorship.html">Sponsorship</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
 </header>
 
-<h1>Ma Galerie d'Images</h1>
+<section class="page-header memories">
+  <div class="container">
+    <center>
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">Festival Memories</h2> 
+    </center>
+  </div>
+</section>
 
-<div class="gallery">
-  <img src="img/img1.jpg" alt="Image 1" />
-  <img src="img/img2.jpg" alt="Image 2" />
-  <img src="img/img3.jpg" alt="Image 3" />
-  <img src="img/img4.jpg" alt="Image 4" />
-  <img src="img/img5.jpg" alt="Image 5" />
-  <img src="img/img6.jpg" alt="Image 6" />
-  <img src="img/img7.jpg" alt="Image 7" />
-  <img src="img/img8.jpg" alt="Image 8" />
-  <img src="img/img9.jpg" alt="Image 9" />
-  <img src="img/img10.jpg" alt="Image 10" />
-  <img src="img/img11.jpg" alt="Image 11" />
-  <img src="img/img12.jpg" alt="Image 12" />
-</div>
+  <div class="gallery ">
+    <img src="img/img1.jpg" alt="Image 1" />
+    <img src="img/img2.jpg" alt="Image 2" />
+    <img src="img/img3.jpg" alt="Image 3" />
+    <img src="img/img4.jpg" alt="Image 4" />
+    <img src="img/img5.jpg" alt="Image 5" />
+    <img src="img/img6.jpg" alt="Image 6" />
+    <img src="img/img7.jpg" alt="Image 7" />
+    <img src="img/img8.jpg" alt="Image 8" />
+    <img src="img/img9.jpg" alt="Image 9" />
+    <img src="img/img10.jpg" alt="Image 10" />
+    <img src="img/img11.jpg" alt="Image 11" />
+    <img src="img/img12.jpg" alt="Image 12" />
+  </div>
+
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
@@ -300,27 +375,80 @@
   <img src="" alt="Image agrandie" id="lightboxImg" />
 </div>
 
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">YOLO Festival</h3>
+                    <p class="text-gray-400">Celebrating Caribbean culture through music, food, and community since June 2025.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="sponsorship.html" class="text-gray-400 hover:text-white transition">Sponsorship</a></li>
+                        <!-- <li><a href="#" class="text-gray-400 hover:text-white transition">Experience</a></li> -->
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Information</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accessibility</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <form class="space-y-2">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                        <button type="submit" class="text-sm bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">Created by<span class="text-primary"> Mr Charles </span> © 2025 YOLO Festival. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 <script>
-  // header
-  const hamburger = document.getElementById('hamburgerBtn');
-  const navMenu = document.getElementById('navMenu');
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.mobile-hamburger-toggle .hamburger-box');
+        const mobileMenu = document.querySelector('.mobile_nav_wrapper');
+        const closeBton = document.querySelector('.mobile-hamburger-close .hamburger-box');
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('open');
+        });
 
-    // Mise à jour de l'attribut aria-expanded pour accessibilité
-    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-    hamburger.setAttribute('aria-expanded', !expanded);
-  });
+        closeBton.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
 
-  // Permet d'ouvrir/fermer le menu avec la touche Entrée ou Espace sur le bouton hamburger
-  hamburger.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      hamburger.click();
-    }
-  });
+        // Close menu when clicking overlay
+        document.querySelector('.wgl-menu_overlay').addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
 
 
 
