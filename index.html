@@ -23,10 +23,23 @@
         }
     </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #515151;
+            background-color: #FFFFFF;
+        }
         .hero-video {
             height: 100vh;
             min-height: 600px;
+        }
+        .luckiest-guy-regular {
+            font-family: "Luckiest Guy", cursive;
+            font-weight: 800;
+            font-style: normal;
         }
         .pulse-animation {
             animation: pulse 2s infinite;
@@ -36,32 +49,214 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+        header.wgl-theme-header {
+            position: relative;
+            z-index: 10;
+        }
+
+        .wgl-site-header {
+            background-color: rgba(255,255,255,0);
+            color: #000000;
+        }
+
+        .wgl-logotype-container img {
+            height: 65px;
+        }
+
+        nav.primary-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav.primary-nav li {
+            margin: 0 15px;
+        }
+
+        nav.primary-nav a {
+            text-decoration: none;
+            color: inherit;
+            font-family: Luckiest Guy, cursive;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .mobile-hamburger-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger-box {
+            width: 30px;
+            height: 24px;
+            position: relative;
+        }
+
+        .hamburger-inner {
+            width: 100%;
+            height: 3px;
+            background-color: #FF6E1F;
+            position: absolute;
+            transition: all 0.3s;
+        }
+
+        .hamburger-inner::before,
+        .hamburger-inner::after {
+            content: '';
+            width: 100%;
+            height: 3px;
+            background-color: #FF6E1F;
+            position: absolute;
+            transition: all 0.3s;
+        }
+
+        .hamburger-inner::before {
+            top: -8px;
+        }
+
+        .hamburger-inner::after {
+            top: 8px;
+        }
+
+        .hamburger-box.open .hamburger-inner {
+            background-color: transparent;
+        }
+
+        .hamburger-box.open .hamburger-inner::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .hamburger-box.open .hamburger-inner::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* Mobile Menu */
+        .mobile_nav_wrapper {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .mobile_nav_wrapper.open {
+            display: block;
+        }
+
+        .wgl-menu_outer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #fff;
+            transform: translateX(100%);
+            transition: transform 0.3s;
+        }
+
+        .mobile_nav_wrapper.open .wgl-menu_outer {
+            transform: translateX(0);
+        }
+
+        .wgl-menu-outer_content nav.primary-nav ul {
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .wgl-menu-outer_content nav.primary-nav li {
+            margin: 10px 0;
+        }
+
+        .mobile-hamburger-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .d-flex{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mobile {
+                display: none;
+            }
+        @media (min-width: 767px) {
+            .mobile{
+                display: block;
+            }
+            .desk {
+                display: none;
+            }
+        }
+        @media (max-width: 767px) {
+            
+            .mobile-hamburger-toggle {
+                display: block;
+            }
+            .-right-6 {
+                right: -0.75rem !important;
+            }
+        }
     </style>
 </head>
 <body class="font-['Montserrat'] bg-gray-50">
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white bg-opacity-90 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-primary font-bold text-2xl">YOLO <span class="text-secondary">INTERNATIONAL FESTIVAL</span></span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-primary transition">Home</a>
-                    <a href="#tickets" class="text-gray-700 hover:text-primary transition">Tickets</a>
-                    <a href="#lineup" class="text-gray-700 hover:text-primary transition">Lineup</a>
-                    <a href="#experience" class="text-gray-700 hover:text-primary transition">Experience</a>
-                    <a href="#location" class="text-gray-700 hover:text-primary transition">Location</a>
-                    <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition">Contact</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button class="text-gray-700">
-                        <i data-feather="menu"></i>
-                    </button>
+    <header class="fixed w-full z-50   bg-gray-900 bg-opacity-90 shadow-sm">
+        <div class="wgl-site-header container">
+            <div class="container-wrapper">
+                <div class="wgl-container">
+                    <div class="wgl-header-row_wrapper d-flex">
+                        <div class="wgl-logotype-container">
+                            <a href="index.html">
+                                <img src="yolo_fest.png" alt="Yolo fest" height="65px">
+                            </a>
+                        </div>
+                        <nav class="primary-nav mobile">
+                            <ul>
+                                <li class="text-white hover:text-primary transition"><a href="about.html">About Us</a></li>
+                                <li class="text-white hover:text-primary transition"><a href="gallerie.html">Gallery</a></li>
+                                <li class="text-white hover:text-primary transition"><a href="sponsorship.html">Sponsorship</a></li>
+                                <li class="text-white hover:text-primary transition"><a href="#contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                        <div class="mobile-hamburger-toggle" style="margin-top: 30px;">
+                            <div class="hamburger-box">
+                                <div class="hamburger-inner"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
+        <div class="mobile_nav_wrapper">
+            <div class="wgl-menu_overlay"></div>
+            <div class="wgl-menu_outer">
+                <div class="mobile-hamburger-close">
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </div>
+                <div class="wgl-menu-outer_content">
+                    <nav class="primary-nav desk">
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="gallerie.html">Gallery</a></li>
+                            <li><a href="sponsorship.html">Sponsorship</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero-video relative flex items-center justify-center overflow-hidden">
@@ -69,12 +264,20 @@
         <video autoplay loop muted playsinline class="absolute z-10 w-auto min-w-full min-h-full max-w-none">
             <source src="yolo.mp4" type="video/mp4">
         </video>
+            <!-- <div class="z-20 text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 luckiest-guy-regular">The Caribbean Vibes <span class="block md:inline">Take Over Canada</span></h1>
+                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 inline-block">
+                    <p class="text-xl md:text-2xl text-white mb-2">Saturday June 27th, 2026</p>
+                    <p class="text-lg text-white mb-6">1360 chemin Saint Philippe, Saint-Polycarpe, QC</p>
+                    <a href="#tickets" class="bg-accent text-primary font-bold px-8 py-3 rounded-full text-lg hover:bg-opacity-90 transition pulse-animation">GET TICKETS NOW</a>
+                </div>
+            </div> -->
         <div class="z-20 text-center px-4">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">The Caribbean Vibes <span class="block md:inline">Take Over Canada</span></h1>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 luckiest-guy-regular">The Caribbean Vibes <span class="block md:inline">Take Over Canada</span></h1><br><br>
             <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 inline-block">
-                <p class="text-xl md:text-2xl text-white mb-2">Saturday June 27th, 2026</p>
-                <p class="text-lg text-white mb-6">1360 chemin Saint Philippe, Saint-Polycarpe, QC</p>
-                <a href="#tickets" class="bg-accent text-primary font-bold px-8 py-3 rounded-full text-lg hover:bg-opacity-90 transition pulse-animation">GET TICKETS NOW</a>
+                <h1 class="text-4xl md:text-6xl text-white mb-2">Saturday June 27th, 2026</h1>
+                <!-- <p class="text-lg text-white mb-6">1360 chemin Saint Philippe, Saint-Polycarpe, QC</p> -->
+                <!-- <a href="#tickets" class="bg-accent text-primary font-bold px-8 py-3 rounded-full text-lg hover:bg-opacity-90 transition pulse-animation">GET TICKETS NOW</a> -->
             </div>
         </div>
 
@@ -553,7 +756,7 @@
             </div>
             
             <div class="mt-12 text-center">
-                <a href="#" class="inline-flex items-center text-primary font-bold hover:text-secondary transition">
+                <a href="gallerie.html" class="inline-flex items-center text-primary font-bold hover:text-secondary transition">
                     <span>View Full Gallery</span>
                     <i data-feather="arrow-right" class="w-5 h-5 ml-2"></i>
                 </a>
@@ -713,10 +916,10 @@
                 <div>
                     <h4 class="font-bold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Tickets</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Lineup</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Experience</a></li>
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="sponsorship.html" class="text-gray-400 hover:text-white transition">Sponsorship</a></li>
+                        <!-- <li><a href="#" class="text-gray-400 hover:text-white transition">Experience</a></li> -->
                     </ul>
                 </div>
                 <div>
@@ -738,7 +941,7 @@
             </div>
             
             <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">© 2025 YOLO Festival. All rights reserved.</p>
+                <p class="text-gray-400 text-sm">Created by<span class="text-primary"> Mr Charles </span> © 2025 YOLO Festival. All rights reserved.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
                     <a href="#" class="text-gray-400 hover:text-white transition">
                         <i data-feather="instagram"></i>
@@ -758,6 +961,26 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.mobile-hamburger-toggle .hamburger-box');
+        const mobileMenu = document.querySelector('.mobile_nav_wrapper');
+        const closeBtn = document.querySelector('.mobile-hamburger-close .hamburger-box');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
+
+        // Close menu when clicking overlay
+        document.querySelector('.wgl-menu_overlay').addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
         // Countdown timer
         const countdown = () => {
             const countDate = new Date('June 27, 2026 00:00:00').getTime();
