@@ -213,39 +213,7 @@
             }
         }
 
-        .slideshow {
-            position: relative;
-            width: 100%;
-            max-width: 800px; /* Ajusté pour 2 images côte à côte */
-            height: 100px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            display: flex; /* Utilise Flexbox pour aligner les 2 images */
-            justify-content: space-between; /* Espace entre les images */
-            animation: fade 9s infinite; /* 3 secondes par slide, 3 slides = 9s */
-        }
-        .slide:nth-child(1) { animation-delay: 0s; }
-        .slide:nth-child(2) { animation-delay: 3s; }
-        .slide:nth-child(3) { animation-delay: 6s; }
-        @keyframes fade {
-            0%, 33% { opacity: 1; }
-            34%, 100% { opacity: 0; }
-        }
-        .image-container {
-            width: 48%; /* Chaque image prend environ la moitié de la largeur */
-            height: 100%;
-        }
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        
     </style>
 </head>
 <body class="font-['Montserrat'] bg-gray-50">
