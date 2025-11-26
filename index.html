@@ -35,6 +35,10 @@
             color: #515151;
             background-color: #FFFFFF;
         }
+        .text-2xl {
+            font-size: 1.83rem;
+            line-height: 2rem;
+        }
         .hero-video {
             height: 100vh;
             min-height: 600px;
@@ -212,6 +216,40 @@
                 right: -0.75rem !important;
             }
         }
+
+        .slideshow {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Ajusté pour 2 images côte à côte */
+            height: 100px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            display: flex; /* Utilise Flexbox pour aligner les 2 images */
+            justify-content: space-between; /* Espace entre les images */
+            animation: fade 9s infinite; /* 3 secondes par slide, 3 slides = 9s */
+        }
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 3s; }
+        .slide:nth-child(3) { animation-delay: 6s; }
+        @keyframes fade {
+            0%, 33% { opacity: 1; }
+            34%, 100% { opacity: 0; }
+        }
+        .image-container {
+            width: 48%; /* Chaque image prend environ la moitié de la largeur */
+            height: 100%;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="font-['Montserrat'] bg-gray-50">
@@ -231,7 +269,7 @@
                                 <li class="text-white hover:text-primary transition"><a href="about.html">About Us</a></li>
                                 <li class="text-white hover:text-primary transition"><a href="gallerie.html">Gallery</a></li>
                                 <li class="text-white hover:text-primary transition"><a href="sponsorship.html">Sponsorship</a></li>
-                                <li class="text-white hover:text-primary transition"><a href="#contact">Contact</a></li>
+                                <li class="text-white hover:text-primary transition"><a href="contact.html">Contact</a></li>
                             </ul>
                         </nav>
                         <div class="mobile-hamburger-toggle" style="margin-top: 30px;">
@@ -257,7 +295,7 @@
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="gallerie.html">Gallery</a></li>
                             <li><a href="sponsorship.html">Sponsorship</a></li>
-                            <li><a href="index.html#contact">Contact</a></li>
+                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -280,7 +318,7 @@
                 </div>
             </div> -->
         <div class="z-20 text-center px-4">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 Double_Bubble_shadow_italic">The Caribbean Vibes <span class="block md:inline">Take Over Canada</span></h1><br><br>
+            <h1 class="text-2xl md:text-6xl font-bold text-white mb-4 luckiest-guy-regular">The Caribbean Vibes <span class="block md:inline">Take Over Canada</span></h1><br><br>
             <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 inline-block">
                 <h1 class="text-4xl md:text-6xl text-white mb-2">Saturday June 27th, 2026</h1>
                 <!-- <p class="text-lg text-white mb-6">1360 chemin Saint Philippe, Saint-Polycarpe, QC</p> -->
@@ -780,16 +818,28 @@
                 <div class="w-20 h-1 bg-accent mx-auto"></div>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-                <div class="p-4 flex justify-center">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center slideshow">
+                <div class="p-4 flex justify-center slide">
                     <img src="couronne.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
-                </div>
-                <div class="p-4 flex justify-center">
                     <img src="Brizz.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
                 </div>
-                <div class="p-4 flex justify-center">
+                <div class="p-4 flex justify-center slide">
+                    <img src="Brizz.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
                     <img src="redbull.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
                 </div>
+                <div class="p-4 flex justify-center slide">
+                    <img src="redbull.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
+                    <img src="couronne.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
+                </div>
+                <!-- <div class="p-4 flex justify-center">
+                    <div class="image-container">
+                    <img src="Brizz.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
+                    <img src="redbull.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
+                    </div>
+                </div> -->
+                <!-- <div class="p-4 flex justify-center">
+                    <img src="redbull.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
+                </div> -->
                 <!-- <div class="p-4 flex justify-center">
                     <img src="http://static.photos/logo/320x240/104" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
                 </div> -->
@@ -809,20 +859,24 @@
             <h2 class="text-3xl font-bold mb-4">Stay in the Loop</h2>
             <p class="text-xl mb-8">Sign up for updates, lineup announcements, and exclusive offers</p>
             
-            <form class="max-w-md mx-auto">
-                <div class="flex">
-                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-900">
-                    <button type="submit" class="bg-accent text-primary font-bold px-6 py-3 rounded-r-lg hover:bg-opacity-90 transition">
+            <form class="max-w-md mx-auto mobile">
+                <div class="flex flex-col sm:flex-row">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-t-lg sm:rounded-l-lg sm:rounded-t-none focus:outline-none text-gray-900">
+                    <button type="submit" class="bg-accent text-primary font-bold px-6 py-3 rounded-b-lg sm:rounded-r-lg sm:rounded-b-none hover:bg-opacity-90 transition">
                         Subscribe
                     </button>
                 </div>
                 <p class="text-sm mt-2 text-white text-opacity-80">We respect your privacy. Unsubscribe at any time.</p>
             </form>
+            <form class="space-y-2 desk">
+                <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                <button type="submit" class="bg-accent text-sm  text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Subscribe</button>
+            </form>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20 bg-white hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
