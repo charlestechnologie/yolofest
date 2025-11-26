@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caribbean Vibes Festival | Montreal</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="js/style.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B35',
+                        secondary: '#004E89',
+                        accent: '#FFBE0B'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap');
+        @font-face {
+            font-family: 'Double_Bubble_shadow_italic';
+            src: url(double-bubble-shadow/Double_Bubble_shadow_italic.otf);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #515151;
+            background-color: #FFFFFF;
+        }
+        .hero-video {
+            height: 100vh;
+            min-height: 600px;
+        }
+        .luckiest-guy-regular {
+            font-family: "Luckiest Guy", cursive;
+            font-weight: 800;
+            font-style: normal;
+        }
+        .Double_Bubble_shadow_italic
+        {
+            font-family: Double_Bubble_shadow_italic;
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        header.wgl-theme-header {
+            position: relative;
+            z-index: 10;
+        }
+
+        .wgl-site-header {
+            background-color: rgba(255,255,255,0);
+            color: #000000;
+        }
+
+        .wgl-logotype-container img {
+            height: 65px;
+        }
+
+        nav.primary-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav.primary-nav li {
+            margin: 0 15px;
+        }
+
+        nav.primary-nav a {
+            text-decoration: none;
+            color: inherit;
+            font-family: Luckiest Guy, cursive;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .mobile-hamburger-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger-box {
+            width: 30px;
+            height: 24px;
+            position: relative;
+        }
+
+        .hamburger-inner {
+            width: 100%;
+            height: 3px;
+            background-color: #FF6E1F;
+            position: absolute;
+            transition: all 0.3s;
+        }
+
+        .hamburger-inner::before,
+        .hamburger-inner::after {
+            content: '';
+            width: 100%;
+            height: 3px;
+            background-color: #FF6E1F;
+            position: absolute;
+            transition: all 0.3s;
+        }
+
+        .hamburger-inner::before {
+            top: -8px;
+        }
+
+        .hamburger-inner::after {
+            top: 8px;
+        }
+
+        .hamburger-box.open .hamburger-inner {
+            background-color: transparent;
+        }
+
+        .hamburger-box.open .hamburger-inner::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .hamburger-box.open .hamburger-inner::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* Mobile Menu */
+        .mobile_nav_wrapper {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .mobile_nav_wrapper.open {
+            display: block;
+        }
+
+        .wgl-menu_outer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #fff;
+            transform: translateX(100%);
+            transition: transform 0.3s;
+        }
+
+        .mobile_nav_wrapper.open .wgl-menu_outer {
+            transform: translateX(0);
+        }
+
+        .wgl-menu-outer_content nav.primary-nav ul {
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .wgl-menu-outer_content nav.primary-nav li {
+            margin: 10px 0;
+        }
+
+        .mobile-hamburger-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .d-flex{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mobile {
+                display: none;
+            }
+        @media (min-width: 767px) {
+            .mobile{
+                display: block;
+            }
+            .desk {
+                display: none;
+            }
+        }
+        @media (max-width: 767px) {
+            
+            .mobile-hamburger-toggle {
+                display: block;
+            }
+            .-right-6 {
+                right: -0.75rem !important;
+            }
+        }
+
+        .slideshow {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Ajusté pour 2 images côte à côte */
+            height: 100px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            display: flex; /* Utilise Flexbox pour aligner les 2 images */
+            justify-content: space-between; /* Espace entre les images */
+            animation: fade 9s infinite; /* 3 secondes par slide, 3 slides = 9s */
+        }
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 3s; }
+        .slide:nth-child(3) { animation-delay: 6s; }
+        @keyframes fade {
+            0%, 33% { opacity: 1; }
+            34%, 100% { opacity: 0; }
+        }
+        .image-container {
+            width: 48%; /* Chaque image prend environ la moitié de la largeur */
+            height: 100%;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="font-['Montserrat'] bg-gray-50">
+    <!-- Navigation -->
+    <header class="fixed w-full z-50   bg-gray-900 bg-opacity-90 shadow-sm">
+        <div class="wgl-site-header container">
+            <div class="container-wrapper">
+                <div class="wgl-container">
+                    <div class="wgl-header-row_wrapper d-flex">
+                        <div class="wgl-logotype-container">
+                            <a href="index.html">
+                                <img src="yolo_fest.png" alt="Yolo fest" height="65px">
+                            </a>
+                        </div>
+                        <nav class="primary-nav mobile">
+                            <ul>
+                                <li class="text-white hover:text-primary transition"><a href="about.html">About Us</a></li>
+                                <li class="text-white hover:text-primary transition"><a href="gallerie.html">Gallery</a></li>
+                                <li class="text-white hover:text-primary transition"><a href="sponsorship.html">Sponsorship</a></li>
+                                <li class="text-white hover:text-primary transition"><a href="#contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                        <div class="mobile-hamburger-toggle" style="margin-top: 30px;">
+                            <div class="hamburger-box">
+                                <div class="hamburger-inner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile_nav_wrapper">
+            <div class="wgl-menu_overlay"></div>
+            <div class="wgl-menu_outer">
+                <div class="mobile-hamburger-close">
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </div>
+                <div class="wgl-menu-outer_content">
+                    <nav class="primary-nav desk">
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="gallerie.html">Gallery</a></li>
+                            <li><a href="sponsorship.html">Sponsorship</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+
+    <!-- Newsletter Section -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Stay in the Loop</h2>
+            <p class="text-xl mb-8">Sign up for updates, lineup announcements, and exclusive offers</p>
+            
+            <form class="max-w-md mx-auto mobile">
+                <div class="flex flex-col sm:flex-row">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-t-lg sm:rounded-l-lg sm:rounded-t-none focus:outline-none text-gray-900">
+                    <button type="submit" class="bg-accent text-primary font-bold px-6 py-3 rounded-b-lg sm:rounded-r-lg sm:rounded-b-none hover:bg-opacity-90 transition">
+                        Subscribe
+                    </button>
+                </div>
+                <p class="text-sm mt-2 text-white text-opacity-80">We respect your privacy. Unsubscribe at any time.</p>
+            </form>
+            <form class="space-y-2 desk">
+                <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                <button type="submit" class="bg-accent text-sm  text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+                <p class="text-xl text-gray-600">Questions? Partnerships? We'd love to hear from you</p>
+                <div class="w-20 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Contact Form</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                            <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option>General Inquiry</option>
+                                <option>Sponsorship</option>
+                                <option>Press/Media</option>
+                                <option>Vendor Application</option>
+                                <option>Volunteer</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-opacity-90 transition">Send Message</button>
+                    </form>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Other Ways to Connect</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i data-feather="mail" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">info@yolofestival.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i data-feather="phone" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Phone</h4>
+                                <p class="text-gray-600">(514) 555-1234</p>
+                            </div>
+                        </div>
+                        <!-- <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i data-feather="map-pin" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Office</h4>
+                                <p class="text-gray-600">123 Festival Way, Montreal, QC H3B 2Y5</p>
+                            </div> 
+                        </div>-->
+                    </div>
+                    
+                    <h4 class="text-xl font-bold text-gray-900 mt-10 mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-100 w-12 h-12 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition">
+                            <i data-feather="instagram" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 w-12 h-12 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition">
+                            <i data-feather="facebook" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 w-12 h-12 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition">
+                            <i data-feather="twitter" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 w-12 h-12 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition">
+                            <i data-feather="youtube" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">YOLO Festival</h3>
+                    <p class="text-gray-400">Celebrating Caribbean culture through music, food, and community since June 2025.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="sponsorship.html" class="text-gray-400 hover:text-white transition">Sponsorship</a></li>
+                        <!-- <li><a href="#" class="text-gray-400 hover:text-white transition">Experience</a></li> -->
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Information</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accessibility</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <form class="space-y-2">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                        <button type="submit" class="text-sm bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">Created by<span class="text-primary"> Mr Charles </span> © 2025 YOLO Festival. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i data-feather="youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.mobile-hamburger-toggle .hamburger-box');
+        const mobileMenu = document.querySelector('.mobile_nav_wrapper');
+        const closeBtn = document.querySelector('.mobile-hamburger-close .hamburger-box');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
+
+        // Close menu when clicking overlay
+        document.querySelector('.wgl-menu_overlay').addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
+        // Countdown timer
+        const countdown = () => {
+            const countDate = new Date('June 27, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const gap = countDate - now;
+            
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+            
+            const textDay = Math.floor(gap / day);
+            const textHour = Math.floor((gap % day) / hour);
+            const textMinute = Math.floor((gap % hour) / minute);
+            const textSecond = Math.floor((gap % minute) / second);
+            
+            document.getElementById('countdown-days').innerText = textDay.toString().padStart(2, '0');
+            document.getElementById('countdown-hours').innerText = textHour.toString().padStart(2, '0');
+            document.getElementById('countdown-minutes').innerText = textMinute.toString().padStart(2, '0');
+            document.getElementById('countdown-seconds').innerText = textSecond.toString().padStart(2, '0');
+        };
+        
+        setInterval(countdown, 1000);
+        
+        // Initialize feather icons
+        feather.replace();
+        
+        // Initialize Vanta.js waves effect
+        VANTA.WAVES({
+            el: "#home",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x0,
+            shininess: 0.00,
+            waveHeight: 15.00,
+            waveSpeed: 0.25,
+            zoom: 0.65
+        });
+    </script>
+</body>
+
+</html>
+
+
+
