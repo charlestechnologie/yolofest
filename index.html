@@ -36,7 +36,7 @@
             background-color: #FFFFFF;
         }
         .text-2xl {
-            font-size: 1.84rem;
+            font-size: 1.83rem;
             line-height: 2rem;
         }
         .hero-video {
@@ -217,43 +217,108 @@
             }
         }
 
-        .slideshow {
+        .slider {
+            height: 100px; /* Réduit pour les logos */
+            margin: auto;
             position: relative;
-            width: 100%;
-            max-width: 800px; /* Ajusté pour 2 images côte à côte */
-            height: 100px;
-            margin: 0 auto;
-            overflow: hidden;
+            width: 100%; /* Pleine largeur */
+            display: grid;
+            place-items: center;
+            overflow: hidden; /* Empêche le débordement */
+        }
+        .slide-track {
+            display: flex;
+            width: calc(var(--slide-width) * 9);
+            animation: scroll 40s linear infinite;
+        }
+        .slide-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(var(--slide-width) * -3));
+            }
         }
         .slide {
+            height: 80px; /* Ajusté pour les logos */
+            width: var(--slide-width);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            perspective: 100px;
+            box-sizing: border-box;
+        }
+        .slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Maintient les proportions des logos */
+            transition: transform 1s;
+        }
+        .slide img:hover {
+            transform: translateZ(10px); /* Effet 3D réduit pour les petits éléments */
+        }
+     /* Ombres désactivées pour simplicité, mais peuvent être réactivées si souhaité */
+         .slider::before,
+        .slider::after {
+            background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+            content: '';
+            height: 100%;
             position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            display: flex; /* Utilise Flexbox pour aligner les 2 images */
-            justify-content: space-between; /* Espace entre les images */
-            animation: fade 9s infinite; /* 3 secondes par slide, 3 slides = 9s */
+            width: 15%;
+            z-index: 2;
         }
-        .slide:nth-child(1) { animation-delay: 0s; }
-        .slide:nth-child(2) { animation-delay: 3s; }
-        .slide:nth-child(3) { animation-delay: 6s; }
-        @keyframes fade {
-            0%, 33% { opacity: 1; }
-            34%, 100% { opacity: 0; }
+        .slider::before {
+            left: 0;
+            top: 0;
         }
-        .image-container {
-            width: 48%; /* Chaque image prend environ la moitié de la largeur */
-            height: 100%;
+        .slider::after {
+            right: 0;
+            top: 0;
+            transform: rotateZ(180deg);
+        } 
+
+    /* Responsive adjustments */
+    :root {
+        --slide-width: 250px; /* Taille par défaut plus petite pour les logos */
+        --slide-height: 80px;
+        --slider-height: 100px;
+    }
+
+    @media (max-width: 768px) {
+        :root {
+            --slide-width: 120px;
+            --slide-height: 60px;
+            --slider-height: 80px;
         }
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .slider {
+            height: var(--slider-height);
         }
-        .wgl-logotype-container a img
-        {
-            width: 170px !important;
+        .slide {
+            height: var(--slide-height);
+            padding: 5px;
         }
+    }
+
+    @media (max-width: 480px) {
+        :root {
+            --slide-width: 100px;
+            --slide-height: 50px;
+            --slider-height: 60px;
+    }
+        .slider {
+            height: var(--slider-height);
+        }
+        .slide {
+            height: var(--slide-height);
+            padding: 5px; /* Reduce padding on very small screens */
+        }
+
+    }
+
     </style>
 </head>
 <body class="font-['Montserrat'] bg-gray-50">
@@ -265,7 +330,7 @@
                     <div class="wgl-header-row_wrapper d-flex">
                         <div class="wgl-logotype-container">
                             <a href="index.html">
-                                <img src="yolo_fest.png" alt="Yolo fest" width="170px" height="65px">
+                                <img src="yolo_fest.png" alt="Yolo fest" height="65px">
                             </a>
                         </div>
                         <nav class="primary-nav mobile">
@@ -821,20 +886,45 @@
                 <p class="text-xl text-gray-600">Thank you to our amazing sponsors</p>
                 <div class="w-20 h-1 bg-accent mx-auto"></div>
             </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center slideshow">
-                <div class="p-4 flex justify-center slide">
-                    <img src="couronne.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
-                    <img src="Brizz.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
+            <!-- slide -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center slider">
+                <div class="p-4 flex justify-center slide-track">
+                    <div class="slide">
+                        <img src="couronne.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
+                    </div>
+                     <div class="slide">
+                        <img src="redbull.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="Brizz.png" alt="">
+                    </div>
+
+                      <!-- double slide -->
+
+
+                    <div class="slide">
+                        <img src="couronne.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="redbull.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="Brizz.png" alt="">
+                    </div>
+
+
+                    <div class="slide">
+                        <img src="couronne.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="redbull.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="Brizz.png" alt="">
+                    </div>
+
                 </div>
-                <div class="p-4 flex justify-center slide">
-                    <img src="Brizz.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
-                    <img src="redbull.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
-                </div>
-                <div class="p-4 flex justify-center slide">
-                    <img src="redbull.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
-                    <img src="couronne.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
-                </div>
+                
                 <!-- <div class="p-4 flex justify-center">
                     <div class="image-container">
                     <img src="Brizz.png" alt="Sponsor" class="h-16 object-contain opacity-80 hover:opacity-100 transition">
@@ -1093,9 +1183,6 @@
 </body>
 
 </html>
-
-
-
 
 
 
